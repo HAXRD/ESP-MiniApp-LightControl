@@ -1,0 +1,1 @@
+<view class="content"><view class="text-area"><text class="title">{{title}}</text><button class="btn-class" type="primary" data-event-opts="{{[['tap',[['goSetting',['$event']]]]]}}" bindtap="__e">开始</button></view></view>
