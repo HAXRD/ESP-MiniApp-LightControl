@@ -165,9 +165,9 @@ var _default =
       btnConn: false,
       initIn: false,
       deviceId: '', // 默认为空
-      serviceId: 'aksdkajsdka',
-      characteristicId: 'adasjdalk' };
-
+      serviceId: 'aksdkajsdka', // !!! 需要与硬件代码所设置 UUID 匹配
+      characteristicId: 'adasjdalk' /// !!! 需要与硬件代码所设置 UUID 匹配
+    };
   },
   onShow: function onShow() {
     var that = this;
@@ -235,7 +235,7 @@ var _default =
     connectBLE: function connectBLE() {// 需要配置UUID匹配才能成功
       var that = this;
       uni.startBluetoothDevicesDiscovery({
-        services: ['service-UUID'], // 参见视频8：09
+        services: ['service-UUID'], // !!! 参见视频8：09
         success: function success(res) {
           // 发现蓝牙后回调
           uni.onBluetoothDeviceFound(function (res) {
