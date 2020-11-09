@@ -10,8 +10,7 @@
             "path" : "pages/setting/setting",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": "灯光控制",
-                "enablePullDownRefresh": false
+                "navigationBarTitleText": "灯光控制"
             }
             
         }

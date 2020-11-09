@@ -19,7 +19,7 @@
 				<text>蓝灯</text>
 			</view>
 		</view>
-		<view class="conn-btn-box" v-if="!btnConn">
+		<view class="conn-btn-box" v-if="!btnConn&&!initIn">
 			<button type='primary' :disabled="!btnOpen" @tap="connectBLE">{{btnOpen?'链接蓝牙':'请开启蓝牙'}}</button>
 		</view>
 	</view>
@@ -31,26 +31,28 @@
 			return {
 				btnOpen: false,
 				btnConn: false,
-				deviceId: '?',
-				serviceId: '?',
-				characteristicId: '?'
+				initIn: false,
+				deviceId: '', // 默认为空
+				serviceId: 'aksdkajsdka', 
+				characteristicId: 'adasjdalk'
 			};
 		},
 		onShow() {
 			var that = this
 			// 开启蓝牙适配器，如果返回失败则说明手机蓝牙没打开，提示用户打开手机蓝牙
 			uni.openBluetoothAdapter({
-				success(res) {
+				success(res) { // 功能测试成功
 					that.btnOpen = true
 					that.connectBLE()
+					that.initIn = true
 					console.log(res)
 				},
 				fail(res) {
 					// 提示用户开启手机蓝牙并监听蓝牙开启状态
-					uni.showToast({
+					uni.showToast({ // 功能测试成功
 						title: '请开启手机蓝牙',
-						duration: 1500,
-						icon: none,
+						duration: 3000,
+						icon: 'none',
 						mask: true
 					})
 					that.listenAdapterState()
@@ -87,7 +89,7 @@
 					}
 				})
 			},
-			listenAdapterState() {
+			listenAdapterState() { // 功能测成功
 				var that = this
 				uni.onBluetoothAdapterStateChange(function(res){
 					// 蓝牙开启
@@ -98,10 +100,10 @@
 					}
 				})
 			},
-			connectBLE() {
+			connectBLE() { // 需要配置UUID匹配才能成功
 				var that = this
 				uni.startBluetoothDevicesDiscovery({
-					services: ['service-UUID'], // 此处输入ESP32硬件代码中的service-UUID
+					services: ['service-UUID'], // 参见视频8：09
 					success(res) {
 						// 发现蓝牙后回调
 						uni.onBluetoothDeviceFound(function(res){
